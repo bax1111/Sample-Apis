@@ -2,13 +2,40 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Montserrat Alternates", sans-serif;
+  color: #eadeda;
+  background: #161616;
   display: grid;
 }
 
 .grid-container {
   grid-template-columns: auto auto auto;
+  margin: auto;
 }
 
 .grid-item {
   padding: 10px;
+}
+
+li {
+  margin: 5px;
+}
+
+hr {
+  width: 90%;
+}
+
+.header {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Button */
+#getData {
+  margin: 10px auto auto auto;
+  width: 80%;
+  color: #eadeda;
+  font-size: 20px;
+  font-weight: bold;
+  background: blue;
 }
