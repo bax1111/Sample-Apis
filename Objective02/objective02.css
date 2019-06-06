@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat Alternates", sans-serif;
+  background: #161616;
+  color: #eadeda;
+}
+
+button {
+  width: 100%;
+  background: greenyellow;
+  color: blue;
+  font-weight: bold;
+}
+
+img {
+  width: 800px;
+  height: 400px;
+}
+
+.header {
+  font-weight: bold;
+}
+
+.sloganStyle {
+  margin-left: 10em;
+}
