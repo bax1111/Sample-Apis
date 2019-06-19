@@ -1,7 +1,12 @@
-* {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   font-family: "Montserrat Alternates", sans-serif;
   color: #eadeda;
   background: #161616;
@@ -15,6 +20,10 @@
 
 .grid-item {
   padding: 10px;
+}
+
+h2 {
+  margin: 10px auto;
 }
 
 li {
@@ -31,11 +40,43 @@ hr {
 }
 
 /* Button */
-#getData {
-  margin: 10px auto auto auto;
-  width: 80%;
-  color: #eadeda;
-  font-size: 20px;
+.getData {
+  color: #1d9af2;
+  background-color: #292d3e;
+  border: 1px solid #1d9af2;
+  border-radius: 8px;
+  padding: 0 15px;
+  cursor: pointer;
+  height: 32px;
+  font-size: 18px;
   font-weight: bold;
-  background: blue;
+  transition: all 0.2s ease-in-out;
+  width: 50%;
+  margin: 20px auto auto auto;
+}
+
+.getData:hover {
+  animation: swing 1s ease;
+  animation-iteration-count: 1;
+}
+
+@keyframes swing {
+  15% {
+    transform: translateX(5px);
+  }
+  30% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  65% {
+    transform: translateX(-3px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }

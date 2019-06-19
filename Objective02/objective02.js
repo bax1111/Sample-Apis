@@ -1,28 +1,27 @@
-document
-  .getElementById("getData")
-  .addEventListener("click", futaramaProductSlogans);
+const sloganDisplay = document.querySelector(".slogan");
 
-function futaramaProductSlogans() {
+function getProducts() {
   fetch("https://sampleapis.com/futurama/inventory")
     .then(res => res.json())
-    .then(jsonData => {
-      let output = "<h2>Futarama Product Slogans</h2>";
-
-      jsonData.forEach(function(products) {
-        const productTitle = products.title;
-        const productSlogan = products.slogan;
-        if (productTitle && productSlogan != "") {
-          output += `
-          <div class="carousel-item ">
-          <ul >
-          <li class="sloganStyle"><span class=header>Product: </span>${productTitle}</li>
-          <li class="sloganStyle"><span class=header>Slogan: </span>${productSlogan}</li>
-          </ul>
-        </div>
-          `;
-        }
-      });
-      document.getElementById("slogan").innerHTML = output;
+    .then(data => {
+      renderDisplay(data);
     })
     .catch(err => console.log(err));
 }
+
+function renderDisplay(data) {
+  const hasSlogan = data.filter(d => d.slogan);
+
+  sloganDisplay.innerHTML = hasSlogan
+    .map(item => {
+      return `<div class="carousel-item justify-content-center">
+      <p class="sloganStyle"><span class=header>Product: </span>${
+        item.title
+      }<br>
+      <span class=header>Slogan: </span>${item.slogan}</p>
+    </div>`;
+    })
+    .join("");
+}
+
+getProducts();

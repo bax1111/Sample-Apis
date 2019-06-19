@@ -1,26 +1,44 @@
-document.getElementById("getData").addEventListener("click", futaramaSayings);
+// Cache the DOM
+const btn = document.querySelector(".getData");
+const sayingsDisplay = document.querySelector(".sayings");
 
-function futaramaSayings() {
+// Listening to events
+btn.addEventListener("click", fetchData);
+fetchData();
+
+//Fecth the Data
+function fetchData() {
   fetch("https://sampleapis.com/futurama/characters")
     .then(res => res.json())
-    .then(jsonData => {
-      let output = "<h2>Futarama Character Random Sayings Generator</h2>";
-
-      jsonData.forEach(function(characters) {
-        const characterSayingsLength = characters.sayings.length;
-        const randomIndex = Math.floor(Math.random() * characterSayingsLength);
-        const randomSaying = characters.sayings[randomIndex];
-        output += `
-          <ul>
-          <li><span class=header>Name:</span> ${characters.name.first} ${
-          characters.name.last
-        }</li>
-          <li><span class=header>Sayings:</span> ${randomSaying}</li>
-          <hr>
-          </ul>
-          `;
-      });
-      document.getElementById("grid-item").innerHTML = output;
+    .then(characters => {
+      renderDisplay(characters);
     })
     .catch(err => console.log(err));
+}
+
+// Creating the view
+function renderDisplay(characters) {
+  sayingsDisplay.innerHTML = characters
+    .map(character => {
+      return `<ul>
+        <li><span class="header">Name: </span>${getFullName(character)}</li>
+        <li><span class="header">Sayings:</span> ${getRandomSaying(
+          character
+        )}</li>
+    </ul>
+    <hr/>`;
+    })
+    .join("");
+}
+
+// Building full name
+function getFullName(character) {
+  return `${character.name.first} ${character.name.last}`;
+}
+
+// Getting random saying
+function getRandomSaying(character) {
+  const characterSayingsLength = character.sayings.length;
+  const randomIndex = Math.floor(Math.random() * characterSayingsLength);
+  return character.sayings[randomIndex];
 }
