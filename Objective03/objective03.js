@@ -1,30 +1,34 @@
-document
-  .getElementById("getData")
-  .addEventListener("click", categorizedProducts);
+const categoryDisplay = document.querySelector(".grid-container");
 
-function categorizedProducts() {
+// Fetch Data
+function inventoryData() {
   fetch("https://sampleapis.com/futurama/inventory")
     .then(res => res.json())
-    .then(jsonData => {
-      let output = "<h2>Categorized Products</h2>";
-
-      const categories = jsonData.map(item => {
-        return item.category;
-      });
-
-      const categoriesUnique = categories.filter((item, index) => {
-        return categories.indexOf(item) >= index;
-      });
-
-      for (let i = 0; i < categoriesUnique.length; i++) {
-        const headerCategories = categoriesUnique[i];
-        output += `
-        <div class="grid-item" >
-        ${headerCategories}<br>
-       
-      </div>
-        `;
-      }
-      document.getElementById("grid").innerHTML = output;
-    });
+    .then(data => {
+      inventory(data);
+    })
+    .catch(err => console.log(err));
 }
+
+// Display all of the unique categories
+function inventory(data) {
+  const categoriesUnique = data.filter(
+    (item, index) => data.indexOf(item) >= index
+  );
+
+  const categories = categoriesUnique
+    .map(d => {
+      return `
+      <div class="grid-item" >
+      <span class="header">Category:</span> ${d.category}<br>
+      <span class="header">Product:</span> ${d.title}
+      </div>
+      `;
+    })
+    .sort()
+    .join("");
+
+  categoryDisplay.innerHTML = categories;
+}
+
+inventoryData();

@@ -1,11 +1,31 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat Alternates", sans-serif;
+}
+
 .grid-container {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto;
+  background: #9e1b38;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(0deg, #9e1b38, #ffd98e);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(0deg, #9e1b38, #ffd98e);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .grid-item {
-  border: 1px solid rgba(0, 0, 0, 0.8);
+  border: 1px solid white;
   padding: 20px;
   font-size: 20px;
   text-align: center;
+}
+
+.header {
+  font-weight: bold;
 }
